@@ -10,16 +10,15 @@ class ImportUsers extends Controller
     public static function import(Request $request) {
         if(($open = fopen('C:\Users\maken\Documents\users.csv', 'r')) !== false){
             while(($data = fgetcsv($open, 1000, ",")) !== false) {
-                DB::table("users")->insert([
-                    "fname" => $data[0],
-                    "lname" => $data[1],
-                    "age"   => $data[2]
-                ]);
+              DB::table("users")->insert([
+                  "fname" => $data[0],
+                  "lname" => $data[1],
+                  "age"   => $data[2]
+              ]);
             }
-
             return[
                 "success"  => true,
-                "massage"  => "Import successfully"
+                "massage"  => "import successfully"
              ];
 
         }
